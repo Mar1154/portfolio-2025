@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  --font-poppins: 'Poppins', sans-serif;
+  --font-boldonse: 'Boldonse', system-ui;
+}
+
+.hero-gradient {
+  background: linear-gradient(180deg, 
+    #E7E7E7 0%, 
+    #E6E6E6 21%, 
+    #E5E5E5 33%, 
+    #D2D2D2 50%, 
+    #D0D0D0 63%, 
+    #DEDEDE 72%, 
+    #E8E8E8 82%, 
+    #FFFFFF 100%
+  );
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
