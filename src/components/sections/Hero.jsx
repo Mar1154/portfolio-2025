@@ -10,7 +10,7 @@ const Hero = () => {
             <div className="flex flex-col z-20">
 
                 {/* Text */}
-                <h1 className="font-['Boldonse'] text-center md:text-left md:-ml-1 mb-2 md:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#333333]">
+                <h1 className="font-['Boldonse'] text-center md:text-left md:-ml-1 mb-4 md:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#333333]">
                     Hello, I'm Mar.
                 </h1>
                 <p className="text-center md:text-left mb-4 md:mb-8 font-medium text-sm sm:text-lg md:text-xl lg:text-2xl text-[#333333]">
