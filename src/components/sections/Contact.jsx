@@ -60,11 +60,11 @@ const Contact = () => {
   return (
     <section id="contact" className="py-32 md:py-48">
       <Container>
-        <SectionTitle className="text-center text-4xl sm:text-5xl md:text-6xl uppercase leading-tight sm:leading-snug md:leading-normal mb-8">
+        <SectionTitle className="text-center text-3xl md:text-6xl uppercase leading-tight sm:leading-snug md:leading-normal mb-8">
           Check me out on
         </SectionTitle>
 
-        <div className="md:max-w-5xl m-auto">
+        <div className="w-xs md:w-xl lg:w-3xl xl:w-4xl m-auto">
           <ul className="flex flex-col">
             {SOCIAL_LINKS.map((social, index) => (
               <li 

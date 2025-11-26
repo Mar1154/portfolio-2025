@@ -7,7 +7,7 @@ import Button from '../ui/Button';
 import { PROJECTS } from '../../constants';
 
 const Projects = () => {
-  const [isGridView, setIsGridView] = useState(false);
+  const [isGridView, setIsGridView] = useState(true);
 
   return (
     <section id="projects" className="py-12 sm:py-16 md:py-24 lg:py-40 xl:py-56 bg-[#222] text-[#FFFFFF]">
@@ -24,7 +24,8 @@ const Projects = () => {
               A selection of projects showcasing my skills in web and mobile development, UI/UX design, and problem-solving.
             </h6>
 
-            <div className="flex gap-2">
+            {/* View Toggle - Hidden on mobile */}
+            <div className="hidden md:flex gap-2">
               <button
                 onClick={() => setIsGridView(true)}
                 className={`px-4 sm:px-5 md:px-6 xl:px-8 py-2 sm:py-2.5 md:py-3 xl:py-4 rounded-l-full border-2 transition-colors duration-300 ${
@@ -56,9 +57,9 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* List View */}
+        {/* List View - Desktop only */}
         {!isGridView && (
-          <div className="w-full flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-14 xl:gap-16">
+          <div className="hidden md:flex w-full flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-14 xl:gap-16">
             {PROJECTS.map((project, index) => (
               <Card 
                 className={`flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`} 
@@ -106,7 +107,7 @@ const Projects = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
             {PROJECTS.map((project) => (
               <Card 
-                className="flex flex-col items-start" 
+                className="flex flex-col items-start mb-6 sm:mb-8 md:mb-10" 
                 key={project.id} 
                 hover
               >
@@ -137,6 +138,54 @@ const Projects = () => {
                   >
                     View Project
                   </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
+        )}
+
+        {/* List View - Desktop only */}
+        {!isGridView && (
+          <div className="hidden md:flex w-full flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-14 xl:gap-16">
+            {PROJECTS.map((project, index) => (
+              <Card 
+                className={`flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`} 
+                key={project.id} 
+                hover
+              >
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="shadow-2xl shadow-[rgba(255,255,255,0.05)] w-full lg:w-3/5 xl:max-w-5xl aspect-[16/9] object-cover rounded-2xl md:rounded-3xl bg-white flex-shrink-0" 
+                />
+                
+                <div className="flex flex-col flex-1 justify-between">
+                  <div>
+                    <h3 className={`font-['Boldonse'] text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl uppercase leading-20 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
+                      {project.title}
+                    </h3>
+                    <p className={`text-gray-300 text-sm sm:text-base md:text-lg ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
+                      {project.description}
+                    </p>
+                  </div>
+                  
+                  <div className={`flex flex-col gap-4 sm:gap-5 md:gap-6 ${index % 2 === 0 ? 'lg:items-end' : 'lg:items-start'}`}>
+                    <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
+                      {project.tags.map((tag) => (
+                        <Badge key={tag}>{tag}</Badge>
+                      ))}
+                    </div>
+
+                    <Button
+                      variant="secondary"
+                      size="md"
+                      className="px-6 sm:px-7 md:px-8 py-1.5 sm:py-2 w-fit border-2 border-[#FFFFFF] text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#222] text-sm sm:text-base"
+                      onClick={() => window.open(project.link, '_blank')}
+                    >
+                      View Project
+                    </Button>
+                  </div>
+
                 </div>
               </Card>
             ))}

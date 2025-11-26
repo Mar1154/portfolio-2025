@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
     author: 'Marion Bailey',
     email: 'noiramyeliab@gmail.com',
     // heroImage: '/images/my-3d-setup-with-me-gemini-2.png',
-    heroImage: '/images/3d-setup-2.png'
+    heroImage: '/portfolio-2025/images/3d-setup-2.png'
 };
 
 // Navigation Links
@@ -65,7 +65,7 @@ export const PROJECTS = [
     {
         id: 1,
         title: 'AI-Konsulta',
-        image: '/images/projects/ai-konsulta-mockup-1.jpg',
+        image: '/portfolio-2025/images/projects/ai-konsulta-mockup-1.jpg',
         description: 'Lorem Ipsum dolor amet',
         tags: ['React', 'React Native', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Figma'],
         link: '#',
@@ -74,7 +74,7 @@ export const PROJECTS = [
     {
         id: 2,
         title: 'Whimsy Game Cafe',
-        image: '/images/projects/about-japan-mockup-1.jpg',
+        image: '/portfolio-2025/images/projects/about-japan-mockup-1.jpg',
         description: 'Lorem Ipsum dolor amet',
         tags: ['Next.js', 'Tailwind CSS', 'TypeScript'],
         link: '#',
@@ -83,7 +83,7 @@ export const PROJECTS = [
     {
         id: 3,
         title: 'About Japan',
-        image: '/images/projects/about-japan-mockup-1.jpg',
+        image: '/portfolio-2025/images/projects/about-japan-mockup-1.jpg',
         description: 'Lorem Ipsum dolor amet',
         tags: ['HTML & CSS', 'JavaScript',],
         link: '#',

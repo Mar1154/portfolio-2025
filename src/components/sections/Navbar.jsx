@@ -54,10 +54,10 @@ const Navbar = () => {
                 <div className="py-4 space-y-2">
                 {NAV_LINKS.map((link) => (
                     <a
-                    key={link.name}
-                    href={link.href}
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
-                    onClick={() => setIsOpen(false)}
+                        key={link.name}
+                        href={link.href}
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
+                        onClick={() => setIsOpen(false)}
                     >
                     {link.name}
                     </a>

@@ -11,7 +11,7 @@ const About = () => {
 
             <div className="">
                 
-                <SectionTitle className="md:text-6xl mb-12 text-center leading-24">
+                <SectionTitle className="text-2xl md:text-6xl mb-12 text-center leading-12 md:leading-24">
                     Designing with Intention,<br/>Building with Precision
                 </SectionTitle>
 
