@@ -28,4 +28,6 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react', 'react-dom'],
   },
+
+  base: '/portfolio-2025/',
 })
