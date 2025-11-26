@@ -21,7 +21,7 @@ const Projects = () => {
 
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 xl:gap-0 md:justify-between md:items-start">
             <h6 className="text-base sm:text-lg md:text-xl xl:text-2xl max-w-full md:max-w-md lg:max-w-lg xl:max-w-xl">
-              A selection of projects showcasing my skills in web and mobile development, UI/UX design, and problem-solving.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
             </h6>
 
             {/* View Toggle - Hidden on mobile */}
