@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { motion as Motion } from 'motion/react';
 import SectionTitle from '../ui/SectionTitle';
 import Container from '../ui/Container';
 import { SOCIAL_LINKS } from '../../constants';
+import { fadeInUp, staggerContainerFast, scrollViewport } from '../../utils/animations';
 
 const Contact = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -60,35 +62,49 @@ const Contact = () => {
   return (
     <section id="contact" className="py-32 md:py-48">
       <Container>
-        <SectionTitle className="text-center text-3xl md:text-6xl uppercase leading-tight sm:leading-snug md:leading-normal mb-8">
-          Check me out on
-        </SectionTitle>
+        <Motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={scrollViewport}
+          variants={fadeInUp}
+        >
+          <SectionTitle className="text-center text-3xl md:text-6xl uppercase leading-tight sm:leading-snug md:leading-normal mb-8">
+            Check me out on
+          </SectionTitle>
+        </Motion.div>
 
         <div className="w-xs md:w-xl lg:w-3xl xl:w-4xl m-auto">
-          <ul className="flex flex-col">
+          <Motion.ul 
+            className="flex flex-col"
+            initial="hidden"
+            whileInView="visible"
+            viewport={scrollViewport}
+            variants={staggerContainerFast}
+          >
             {SOCIAL_LINKS.map((social, index) => (
-              <li 
+              <Motion.li 
                 key={social.name}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`cursor-pointer flex justify-between items-center border-b border-gray-600 py-6 md:py-12 transition-all duration-500 ease-out origin-center ${getScaleClass(index)} ${getBlurClass(index)}`}  
+                className={`transition-all duration-500 ease-out origin-center ${getScaleClass(index)} ${getBlurClass(index)}`}
+                variants={fadeInUp}
               >
                 <a
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-lg sm:text-xl md:text-3xl lg:text-5xl font-medium text-[#333333]"
+                  className="cursor-pointer flex justify-between items-center border-b border-gray-600 py-6 md:py-12 w-full text-lg sm:text-xl md:text-3xl lg:text-5xl font-medium text-[#333333]"
                   aria-label={social.label}
                 >
-                  {social.name}
-                </a>
+                  <span>{social.name}</span>
 
-                <span className={`flex items-center text-[#333333] transition-transform duration-700 ease-out ${hoveredIndex === index ? 'rotate-360' : 'rotate-0'}`}>
-                  {getSocialIcon(social.icon)}
-                </span>
-              </li>
+                  <span className={`flex items-center text-[#333333] transition-transform duration-700 ease-out ${hoveredIndex === index ? 'rotate-360' : 'rotate-0'}`}>
+                    {getSocialIcon(social.icon)}
+                  </span>
+                </a>
+              </Motion.li>
             ))}
-          </ul>
+          </Motion.ul>
         </div>
 
       </Container>

@@ -1,20 +1,28 @@
 import { useState } from 'react';
+import { motion as Motion } from 'motion/react';
 import SectionTitle from '../ui/SectionTitle';
 import Container from '../ui/Container';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
 import { PROJECTS } from '../../constants';
+import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, scrollViewport } from '../../utils/animations';
 
 const Projects = () => {
-  const [isGridView, setIsGridView] = useState(true);
+  const [isGridView, setIsGridView] = useState(window.innerWidth < 768);
 
   return (
     <section id="projects" className="py-12 sm:py-16 md:py-24 lg:py-40 xl:py-56 bg-[#222] text-[#FFFFFF]">
       <Container>
 
         {/* Text Section */}
-        <div className="mb-12 sm:mb-16 md:mb-20 xl:mb-24">
+        <Motion.div 
+          className="mb-12 sm:mb-16 md:mb-20 xl:mb-24"
+          initial="hidden"
+          whileInView="visible"
+          viewport={scrollViewport}
+          variants={fadeInUp}
+        >
           <SectionTitle className="text-4xl sm:text-5xl md:text-6xl uppercase leading-tight sm:leading-snug md:leading-normal w-full max-w-xl xl:max-w-2xl">
             Featured Works
           </SectionTitle>
@@ -28,7 +36,7 @@ const Projects = () => {
             <div className="hidden md:flex gap-2">
               <button
                 onClick={() => setIsGridView(true)}
-                className={`px-4 sm:px-5 md:px-6 xl:px-8 py-2 sm:py-2.5 md:py-3 xl:py-4 rounded-l-full border-2 transition-colors duration-300 ${
+                className={`cursor-pointer px-4 sm:px-5 md:px-6 xl:px-8 py-2 sm:py-2.5 md:py-3 xl:py-4 rounded-l-full border-2 transition-colors duration-300 ${
                   isGridView 
                     ? 'bg-[#FFFFFF] text-[#333333] border-[#FFFFFF]' 
                     : 'bg-transparent text-[#FFFFFF] border-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#333333]'
@@ -42,7 +50,7 @@ const Projects = () => {
 
               <button
                 onClick={() => setIsGridView(false)}
-                className={`px-4 sm:px-5 md:px-6 xl:px-8 py-2 sm:py-2.5 md:py-3 xl:py-4 rounded-r-full border-2 transition-colors duration-300 ${
+                className={`cursor-pointer px-4 sm:px-5 md:px-6 xl:px-8 py-2 sm:py-2.5 md:py-3 xl:py-4 rounded-r-full border-2 transition-colors duration-300 ${
                   !isGridView 
                     ? 'bg-[#FFFFFF] text-[#333333] border-[#FFFFFF]' 
                     : 'bg-transparent text-[#FFFFFF] border-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#333333]'
@@ -55,67 +63,79 @@ const Projects = () => {
               </button>
             </div>
           </div>
-        </div>
+        </Motion.div>
 
         {/* List View - Desktop only */}
         {!isGridView && (
           <div className="hidden md:flex w-full flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-14 xl:gap-16">
             {PROJECTS.map((project, index) => (
-              <Card 
-                className={`flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`} 
-                key={project.id} 
-                hover
+              <Motion.div
+                key={project.id}
+                initial="hidden"
+                whileInView="visible"
+                viewport={scrollViewport}
+                variants={index % 2 === 0 ? fadeInLeft : fadeInRight}
               >
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="shadow-2xl shadow-[rgba(255,255,255,0.05)] w-full lg:w-3/5 xl:max-w-5xl aspect-[16/9] object-cover rounded-2xl md:rounded-3xl bg-white flex-shrink-0" 
-                />
-                
-                <div className="flex flex-col flex-1 justify-between">
-                  <div>
-                    <h3 className={`font-['Boldonse'] text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl uppercase leading-20 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
-                      {project.title}
-                    </h3>
-                    <p className={`text-gray-300 text-sm sm:text-base md:text-lg ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
-                      {project.description}
-                    </p>
-                    {/* <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
-                      {project.tags.map((tag) => (
-                        <Badge key={tag}>{tag}</Badge>
-                      ))}
-                    </div> */}
+                <Card 
+                  className={`flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
+                  hover
+                >
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="shadow-2xl shadow-[rgba(255,255,255,0.05)] w-full lg:w-3/5 xl:max-w-5xl aspect-[16/9] object-cover rounded-2xl md:rounded-3xl bg-white flex-shrink-0" 
+                  />
+                  
+                  <div className="flex flex-col flex-1 justify-between place-self-start lg:place-self-center">
+                    <div>
+                      <h3 className={`font-['Boldonse'] text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl uppercase leading-20 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
+                        {project.title}
+                      </h3>
+                      <p className={`text-gray-300 text-sm sm:text-base md:text-lg ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
+                        {project.description}
+                      </p>
+                    </div>
+
+                    <Button
+                      variant="secondary"
+                      size="md"
+                      className={`mt-12 px-8 sm:px-10 md:px-12 py-2 sm:py-2.5 md:py-3 w-fit border-2 border-[#FFFFFF] text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#333333] text-sm sm:text-base ${index % 2 === 0 ? 'lg:place-self-end' : 'lg:place-self-start'}`}
+                      onClick={() => window.open(project.link, '_blank')}
+                    >
+                      View Project
+                    </Button>
                   </div>
 
-                  <Button
-                    variant="secondary"
-                    size="md"
-                    className={`mt-12 px-8 sm:px-10 md:px-12 py-2 sm:py-2.5 md:py-3 w-fit border-2 border-[#FFFFFF] text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#333333] text-sm sm:text-base ${index % 2 === 0 ? 'lg:place-self-end' : 'lg:place-self-start'}`}
-                    onClick={() => window.open(project.link, '_blank')}
-                  >
-                    View Project
-                  </Button>
-                </div>
-
-              </Card>
+                </Card>
+              </Motion.div>
             ))}
           </div>
         )}
 
-        {/* Grid View */}
-        {isGridView && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
-            {PROJECTS.map((project) => (
+        {/* Grid View - Always visible on mobile, conditional on desktop */}
+        <Motion.div 
+          className={`grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 ${!isGridView ? 'md:hidden' : ''}`}
+          initial="hidden"
+          whileInView="visible"
+          viewport={scrollViewport}
+          variants={staggerContainer}
+        >
+          {PROJECTS.map((project) => (
+            <Motion.div
+              key={project.id}
+              variants={fadeInUp}
+            >
               <Card 
-                className="flex flex-col items-start mb-6 sm:mb-8 md:mb-10" 
-                key={project.id} 
+                className="flex flex-col items-start mb-6 sm:mb-8 md:mb-10"
                 hover
               >
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full aspect-[16/9] object-cover rounded-2xl md:rounded-3xl bg-white mb-6 md:mb-10" 
-                />
+                <div className="w-full overflow-hidden rounded-2xl md:rounded-3xl mb-6 md:mb-10">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full aspect-[16/9] object-cover bg-white transition-transform duration-500 hover:scale-110" 
+                  />
+                </div>
                 
                 <div className="flex flex-col flex-1">
                   <h3 className="font-['Boldonse'] text-xl sm:text-2xl md:text-2xl xl:text-3xl mb-2 sm:mb-3 uppercase">
@@ -140,57 +160,9 @@ const Projects = () => {
                   </Button>
                 </div>
               </Card>
-            ))}
-          </div>
-        )}
-
-        {/* List View - Desktop only */}
-        {!isGridView && (
-          <div className="hidden md:flex w-full flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-14 xl:gap-16">
-            {PROJECTS.map((project, index) => (
-              <Card 
-                className={`flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`} 
-                key={project.id} 
-                hover
-              >
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="shadow-2xl shadow-[rgba(255,255,255,0.05)] w-full lg:w-3/5 xl:max-w-5xl aspect-[16/9] object-cover rounded-2xl md:rounded-3xl bg-white flex-shrink-0" 
-                />
-                
-                <div className="flex flex-col flex-1 justify-between">
-                  <div>
-                    <h3 className={`font-['Boldonse'] text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl uppercase leading-20 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
-                      {project.title}
-                    </h3>
-                    <p className={`text-gray-300 text-sm sm:text-base md:text-lg ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
-                      {project.description}
-                    </p>
-                  </div>
-                  
-                  <div className={`flex flex-col gap-4 sm:gap-5 md:gap-6 ${index % 2 === 0 ? 'lg:items-end' : 'lg:items-start'}`}>
-                    <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
-                      {project.tags.map((tag) => (
-                        <Badge key={tag}>{tag}</Badge>
-                      ))}
-                    </div>
-
-                    <Button
-                      variant="secondary"
-                      size="md"
-                      className="px-6 sm:px-7 md:px-8 py-1.5 sm:py-2 w-fit border-2 border-[#FFFFFF] text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#222] text-sm sm:text-base"
-                      onClick={() => window.open(project.link, '_blank')}
-                    >
-                      View Project
-                    </Button>
-                  </div>
-
-                </div>
-              </Card>
-            ))}
-          </div>
-        )}
+            </Motion.div>
+          ))}
+        </Motion.div>
 
       </Container>
     </section>

@@ -1,38 +1,56 @@
+import { motion as Motion } from 'motion/react';
 import SectionTitle from '../ui/SectionTitle';
 import Container from '../ui/Container';
 import Card from '../ui/Card';
 import { SERVICES } from '../../constants';
+import { fadeInUp, staggerContainer, scrollViewport } from '../../utils/animations';
 
 const Services = () => {
 
   return (
-    <section id="about" className="py-48 bg-[#222222] text-white">
+    <section id="services" className="py-48 bg-[#222222] text-white">
       <Container>
 
         {/* Text Section */}
-        <div className="mb-12 sm:mb-16">
+        <Motion.div 
+          className="mb-12 sm:mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={scrollViewport}
+          variants={fadeInUp}
+        >
           <SectionTitle className="text-4xl sm:text-5xl md:text-6xl uppercase leading-tight sm:leading-snug md:leading-normal w-full max-w-xl xl:max-w-2xl mb-8">
             Offered Services
           </SectionTitle>
-        </div>
+        </Motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <Motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={scrollViewport}
+          variants={staggerContainer}
+        >
           {SERVICES.map((service) => (
-            <Card
+            <Motion.div
               key={service.id}
-              hover
-              className="p-6 sm:p-8 bg-white/10 rounded-2xl md:rounded-3xl flex flex-col justify-between min-h-[160px] sm:min-h-[180px] md:min-h-[220px]"
+              variants={fadeInUp}
             >
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white w-1/2 min-w-[180px] self-start">
-                {service.title}
-              </h3>
+              <Card
+                hover
+                className="p-6 sm:p-8 bg-white/10 rounded-2xl md:rounded-3xl flex flex-col justify-between min-h-[160px] sm:min-h-[180px] md:min-h-[220px]"
+              >
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white w-1/2 min-w-[180px] self-start">
+                  {service.title}
+                </h3>
 
-              <p className="w-1/2 min-w-[180px] self-end text-right text-white text-sm sm:text-base">
-                {service.description}
-              </p>
-            </Card>
+                <p className="w-1/2 min-w-[180px] self-end text-right text-white text-sm sm:text-base">
+                  {service.description}
+                </p>
+              </Card>
+            </Motion.div>
           ))}
-        </div>
+        </Motion.div>
 
       </Container>
     </section>

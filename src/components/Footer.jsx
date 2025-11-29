@@ -1,5 +1,7 @@
+import { motion as Motion } from 'motion/react';
 import Container from './ui/Container';
 import { SOCIAL_LINKS } from '../constants';
+import { fadeInUp, staggerContainerFast, scrollViewport } from '../utils/animations';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -7,10 +9,19 @@ const Footer = () => {
   return (
     <footer className="bg-[#222222] text-white py-10 md:py-16 lg:py-20 rounded-t-[16px] md:rounded-t-[36px] lg:rounded-t-[64px]">
       <Container>
-        <div className="flex flex-col gap-8 sm:gap-10 md:gap-12">
+        <Motion.div 
+          className="flex flex-col gap-8 sm:gap-10 md:gap-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={scrollViewport}
+          variants={staggerContainerFast}
+        >
           
           {/* Top Section - Logo and Social Links */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-8 pb-8 sm:pb-10 md:pb-12 border-b border-gray-700">
+          <Motion.div 
+            className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-8 pb-8 sm:pb-10 md:pb-12 border-b border-gray-700"
+            variants={fadeInUp}
+          >
             {/* Logo/Name */}
             <div className="text-2xl sm:text-3xl md:text-4xl font-bold">mar.</div>
 
@@ -31,10 +42,13 @@ const Footer = () => {
                 ))}
               </div>
             </nav>
-          </div>
+          </Motion.div>
 
           {/* Bottom Section - Copyright and Email */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6">
+          <Motion.div 
+            className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6"
+            variants={fadeInUp}
+          >
             <div className="text-[#F1F1F1] text-xs sm:text-sm">
               © {currentYear} Marion Bailey. All rights reserved.
             </div>
@@ -45,9 +59,9 @@ const Footer = () => {
             >
               noiramyeliab@gmail.com
             </a>
-          </div>
+          </Motion.div>
 
-        </div>
+        </Motion.div>
       </Container>
     </footer>
   );

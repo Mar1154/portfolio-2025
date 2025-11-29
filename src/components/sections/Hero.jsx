@@ -1,41 +1,90 @@
+import { useState, useEffect } from 'react';
+import { motion as Motion, AnimatePresence } from 'motion/react';
 import Button from '../ui/Button';
 import Container from '../ui/Container';
-import { SITE_CONFIG, SOCIAL_LINKS } from '../../constants';
+import { SITE_CONFIG, SOCIAL_LINKS, RESUME_DOWNLOAD, RESUME_IMAGE } from '../../constants';
+import { heroTitle, heroSubtitle, heroButtons, heroSocials, heroImage } from '../../utils/animations';
 
 const Hero = () => {
+    const [isResumeOpen, setIsResumeOpen] = useState(false);
+    const [zoom, setZoom] = useState(1);
+
+    const handleProjectsClick = (e) => {
+        e.preventDefault();
+        const target = document.querySelector('#projects');
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
+    useEffect(() => {
+        if (isResumeOpen) {
+            document.body.style.overflow = 'hidden';
+            setZoom(1);
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isResumeOpen]);
+
     return (
+        <>
         <section id="home" className="relative min-h-screen flex items-end pb-12 md:items-center md:pb-0 hero-gradient">
         <Container>
 
             <div className="flex flex-col z-20">
 
                 {/* Text */}
-                <h1 className="font-['Boldonse'] text-center md:text-left md:-ml-1 mb-4 md:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#333333]">
+                <Motion.h1 
+                    className="font-['Boldonse'] text-center md:text-left md:-ml-1 mb-4 md:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#333333]"
+                    initial="hidden"
+                    animate="visible"
+                    variants={heroTitle}
+                >
                     Hello, I'm Mar.
-                </h1>
-                <p className="text-center md:text-left mb-4 md:mb-8 font-medium text-sm sm:text-lg md:text-xl lg:text-2xl text-[#333333]">
+                </Motion.h1>
+                <Motion.p 
+                    className="text-center md:text-left mb-4 md:mb-8 font-medium text-sm sm:text-lg md:text-xl lg:text-2xl text-[#333333]"
+                    initial="hidden"
+                    animate="visible"
+                    variants={heroSubtitle}
+                >
                     Front-end Developer & UI/UX Designer
-                </p>
+                </Motion.p>
 
                 {/* Buttons */}
-                <div className="justify-center md:justify-start mb-8 md:mb-0 md:-ml-1 flex gap-2 md:gap-4">
+                <Motion.div 
+                    className="justify-center md:justify-start mb-8 md:mb-0 md:-ml-1 flex gap-2 md:gap-4"
+                    initial="hidden"
+                    animate="visible"
+                    variants={heroButtons}
+                >
                     <Button 
                         variant="secondary" 
                         size="lg"
                         className="hover:bg-[#333333] hover:text-[#F1F1F1]"
+                        onClick={handleProjectsClick}
                     >
                         View Projects
                     </Button>
                     <Button 
                         variant="primary" 
                         size="lg"
+                        onClick={() => setIsResumeOpen(true)}
                     >
                         View Resume
                     </Button>
-                </div>
+                </Motion.div>
 
                 {/* Socials */}
-                <div className="md:absolute md:bottom-20 flex justify-center items-center gap-2 md:gap-4">
+                <Motion.div 
+                    className="md:absolute md:bottom-20 flex justify-center items-center gap-2 md:gap-4"
+                    initial="hidden"
+                    animate="visible"
+                    variants={heroSocials}
+                >
                     {SOCIAL_LINKS.map((social) => (
                         <a
                             key={social.name}
@@ -62,22 +111,149 @@ const Hero = () => {
                             )}
                         </a>
                     ))}
-                </div>
+                </Motion.div>
 
             </div>
 
             {/* Element */}
             {/* Will make 3d later */}
-            <div className="absolute top-0 right-0 md:right-[96px] h-full w-full px-4 md:w-2/5 flex items-start md:items-center justify-center md:justify-end z-0">
+            <Motion.div 
+                className="absolute top-0 right-0 md:right-[96px] h-full w-full px-4 md:w-2/5 flex items-start md:items-center justify-center md:justify-end z-0 pointer-events-none"
+                initial="hidden"
+                animate="visible"
+                variants={heroImage}
+            >
                 <img
                     src={SITE_CONFIG.heroImage}
                     alt="Hero Image"
                     className="mt-24 md:mt-0 w-2xl xl:w-4xl h-auto object-contain"
                 />
-            </div>
+            </Motion.div>
 
         </Container>
         </section>
+
+        {/* Resume Modal */}
+        <AnimatePresence>
+            {isResumeOpen && (
+                <>
+                    {/* Backdrop */}
+                    <Motion.div
+                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        onClick={() => setIsResumeOpen(false)}
+                    />
+                    
+                    {/* Modal */}
+                    <Motion.div
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ duration: 0.3, ease: 'easeOut' }}
+                    >
+                        <div 
+                            className="relative bg-white rounded-3xl shadow-2xl max-w-5xl w-full max-h-[90vh] flex flex-col"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {/* Header */}
+                            <div className="flex items-center justify-end px-6 py-3 border-b border-gray-200">
+                                
+                                {/* Close Button */}
+                                <button
+                                    onClick={() => setIsResumeOpen(false)}
+                                    className="cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors"
+                                    aria-label="Close resume"
+                                >
+                                    <svg className="w-6 h-6 text-[#333333]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+
+                            </div>
+
+                            {/* Resume Preview */}
+                            <div className="flex-1 overflow-auto p-6 md:p-8">
+                                <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-inner flex justify-center items-center">
+                                    <img
+                                        src={RESUME_IMAGE}
+                                        style={{
+                                            transform: `scale(${zoom})`,
+                                            transformOrigin: 'center center',
+                                            transition: 'transform 0.2s ease'
+                                        }}
+                                        className="max-w-full h-auto"
+                                        alt="Resume Preview"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Footer */}
+                            <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 md:p-6 border-t border-gray-200">
+
+                                {/* ZOOM BUTTONS */}
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        onClick={() => setZoom(Math.max(0.5, zoom - 0.25))}
+                                        className="bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                        disabled={zoom <= 0.5}
+                                        aria-label="Zoom out"
+                                    >
+                                        <svg className="w-5 h-5 text-[#333333]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7" />
+                                        </svg>
+                                    </button>
+                                    <span className="text-sm font-medium text-[#333333] min-w-[3.5rem] text-center">
+                                        {Math.round(zoom * 100)}%
+                                    </span>
+                                    <button
+                                        onClick={() => setZoom(Math.min(2, zoom + 0.25))}
+                                        className="bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                        disabled={zoom >= 2}
+                                        aria-label="Zoom in"
+                                    >
+                                        <svg className="w-5 h-5 text-[#333333]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                                        </svg>
+                                    </button>
+                                    <button
+                                        onClick={() => setZoom(1)}
+                                        className="ml-2 px-3 py-1.5 text-sm text-[#333333] hover:bg-gray-100 rounded-full font-medium transition-colors"
+                                    >
+                                        Reset
+                                    </button>
+                                </div>
+
+                                <div className="flex gap-2 md:gap-4 w-full md:w-auto">
+                                    <button
+                                        onClick={() => setIsResumeOpen(false)}
+                                        className="cursor-pointer flex-1 md:flex-none px-4 md:px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-[#333333] rounded-full transition-colors font-medium text-sm md:text-base"
+                                    >
+                                        Close
+                                    </button>
+                                    <a
+                                        href={RESUME_DOWNLOAD}
+                                        download="Marion_Bailey_Resume.pdf"
+                                        className="flex items-center justify-center gap-2 flex-1 md:flex-none px-4 md:px-6 py-2.5 bg-[#333333] hover:bg-[#555555] text-white rounded-full transition-colors font-medium text-sm md:text-base"
+                                    >
+                                        <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                        </svg>
+                                        <span className="hidden sm:inline">Download Resume</span>
+                                        <span className="sm:hidden">Download</span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </Motion.div>
+                </>
+            )}
+        </AnimatePresence>
+        </>
     );
 };
 

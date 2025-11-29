@@ -19,8 +19,13 @@ export const NAV_LINKS = [
     { name: 'Contact', href: '#contact' },
 ];
 
+// Resume
+export const RESUME_DOWNLOAD = "/portfolio-2025/Marion_Bailey_Resume.pdf";
+export const RESUME_IMAGE = "public/images/Bailey_Marion_Resume.jpg";
+
+
 // Images
-export const heroImage = "public/images/my-3d-setup-with-me-gemini-2.png";
+export const HERO_IMAGE = "public/images/my-3d-setup-with-me-gemini-2.png";
 
 // Social Links
 export const SOCIAL_LINKS = [
@@ -65,16 +70,16 @@ export const PROJECTS = [
     {
         id: 1,
         title: 'AI-Konsulta',
-        image: '/portfolio-2025/images/projects/ai-konsulta-mockup-1.jpg',
+        image: '/portfolio-2025/images/projects/ai-konsulta-mockup-1.png',
         description: 'Lorem Ipsum dolor amet',
         tags: ['React', 'React Native', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Figma'],
-        link: '#',
+        link: 'https://www.aikonsulta.com/',
         github: '#',
     },
     {
         id: 2,
         title: 'Whimsy Game Cafe',
-        image: '/portfolio-2025/images/projects/about-japan-mockup-1.jpg',
+        image: '/portfolio-2025/images/projects/whimsy-game-cafe-mockup-1.png',
         description: 'Lorem Ipsum dolor amet',
         tags: ['Next.js', 'Tailwind CSS', 'TypeScript'],
         link: '#',
@@ -83,10 +88,10 @@ export const PROJECTS = [
     {
         id: 3,
         title: 'About Japan',
-        image: '/portfolio-2025/images/projects/about-japan-mockup-1.jpg',
+        image: '/portfolio-2025/images/projects/about-japan-mockup-1.png',
         description: 'Lorem Ipsum dolor amet',
         tags: ['HTML & CSS', 'JavaScript',],
-        link: '#',
+        link: 'https://oninsss.github.io/BigBoyz-AWD-FEUTECH-TW24/',
         github: '#',
     },
 ];
@@ -95,26 +100,12 @@ export const PROJECTS = [
 export const SERVICES = [
     {
         id: 1,
-        title: 'Web Development',
-        description: 'Building responsive, high-performance websites and web applications tailored to your needs.',
-        icon: '💻',
+        title: 'UI/UX Design',
+        description: 'Lorem ipsum dolor amet ',
     },
     {
         id: 2,
-        title: 'UI/UX Design',
-        description: 'Creating intuitive and engaging user interfaces that provide exceptional user experiences.',
-        icon: '🎨',
-    },
-    {
-        id: 3,
-        title: 'API Development',
-        description: 'Developing robust and scalable backend services and RESTful APIs.',
-        icon: '⚙️',
-    },
-    {
-        id: 4,
-        title: 'Consulting',
-        description: 'Providing expert advice on technology stack, architecture, and best practices.',
-        icon: '💡',
+        title: 'Web Development',
+        description: 'Lorem ipsum dolor amet ',
     },
 ];
