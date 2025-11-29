@@ -1,16 +1,13 @@
 import { motion as Motion } from 'motion/react';
 import SectionTitle from '../ui/SectionTitle';
 import Container from '../ui/Container';
-import Button from '../ui/Button';
-import { fadeInUp, scaleIn, scrollViewport } from '../../utils/animations';
+import { fadeInUp, scrollViewport } from '../../utils/animations';
 
 const About = () => {
 
     return (
         <section id="about" className="py-48 bg-[#FEFEFE] text-[#333333]">
         <Container>
-
-            {/* Element */}
 
             <Motion.div 
                 className="flex flex-col items-center"
@@ -20,25 +17,22 @@ const About = () => {
                 variants={fadeInUp}
             >
                 
-                <SectionTitle className="mb-6 text-2xl md:text-5xl text-center leading-12 md:leading-20">
+                <SectionTitle className="mb-0 text-2xl md:text-5xl lg:text-6xl text-center leading-10 md:leading-24 lg:leading-28">
                     Designing with Intention,<br/>Building with Precision
                 </SectionTitle>
 
-                <Motion.div
+                <Motion.p
+                    className="text-center text-gray-600 text-base md:text-lg max-w-2xl leading-relaxed"
                     initial="hidden"
                     whileInView="visible"
                     viewport={scrollViewport}
-                    variants={scaleIn}
+                    variants={fadeInUp}
+                    transition={{ delay: 0.2 }}
                 >
-                    <Button
-                        variant="primary"
-                        size="lg"
-                        className="px-8 sm:px-10 md:px-12 py-2 sm:py-2.5 md:py-3 w-fit border-2 border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white text-sm sm:text-base"
-                        onClick={() => window.open('https://drive.google.com/file/d/1a2b3c4D5EfGhIjKlMnOpQrStUvWxYz/view?usp=sharing', '_blank')}
-                    >
-                        Lorem Ipsum
-                    </Button>
-                </Motion.div>
+                    I'm a passionate front-end developer and UI/UX designer dedicated to crafting beautiful, 
+                    functional digital experiences. With a keen eye for detail and a love for clean code, 
+                    I transform creative visions into reality through thoughtful design and modern web technologies.
+                </Motion.p>
 
             </Motion.div>
         </Container>

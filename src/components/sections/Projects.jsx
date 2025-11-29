@@ -20,7 +20,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-12 sm:py-16 md:py-24 lg:py-40 xl:py-56 bg-[#222] text-[#FFFFFF]">
+    <section id="projects" className="py-20 md:py-24 lg:py-40 xl:py-56 bg-[#222] text-[#FFFFFF]">
       <Container>
 
         {/* Text Section */}
@@ -107,7 +107,7 @@ const Projects = () => {
                       {project.description.length > 100 && (
                         <button
                           onClick={() => toggleCard(project.id)}
-                          className={`text-white hover:text-gray-300 text-sm font-medium ${expandedCards[project.id] ? 'mb-4' : 'mb-6'} transition-colors flex items-center gap-1 ${index % 2 === 0 ? 'lg:ml-auto' : ''}`}
+                          className={`cursor-pointer text-white hover:text-gray-300 text-sm font-medium ${expandedCards[project.id] ? 'mb-4' : 'mb-6'} transition-colors flex items-center gap-1 ${index % 2 === 0 ? 'lg:ml-auto' : ''}`}
                         >
                           {expandedCards[project.id] ? 'See Less' : 'See More'}
                           <svg 

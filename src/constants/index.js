@@ -101,11 +101,11 @@ export const SERVICES = [
     {
         id: 1,
         title: 'UI/UX Design',
-        description: 'Lorem ipsum dolor amet ',
+        description: 'Crafting intuitive and visually stunning user interfaces with a focus on user experience, accessibility, and modern design principles.',
     },
     {
         id: 2,
         title: 'Web Development',
-        description: 'Lorem ipsum dolor amet ',
+        description: 'Building responsive, performant web applications using modern frameworks and technologies like React, Next.js, and Tailwind CSS.',
     },
 ];
