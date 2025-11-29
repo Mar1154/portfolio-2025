@@ -165,9 +165,10 @@ const Projects = () => {
             <Motion.div
               key={project.id}
               variants={fadeInUp}
+              className="flex"
             >
               <Card 
-                className="flex flex-col items-start mb-6 sm:mb-8 md:mb-10"
+                className="flex flex-col items-start mb-6 sm:mb-8 md:mb-10 w-full"
                 hover
               >
                 <div className="w-full overflow-hidden rounded-2xl md:rounded-3xl mb-6 md:mb-10">
@@ -219,14 +220,16 @@ const Projects = () => {
                     </Motion.div>
                   )}
 
-                  <Button
-                    variant="secondary"
-                    size="md"
-                    className="w-full px-6 sm:px-7 md:px-8 py-1.5 sm:py-2 w-fit border-2 border-[#FFFFFF] text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#333333] text-sm sm:text-base mt-auto"
-                    onClick={() => window.open(project.link, '_blank')}
-                  >
-                    View Project
-                  </Button>
+                  <div className="mt-auto pt-2">
+                    <Button
+                      variant="secondary"
+                      size="md"
+                      className="w-full px-6 sm:px-7 md:px-8 py-1.5 sm:py-2 w-fit border-2 border-[#FFFFFF] text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#333333] text-sm sm:text-base"
+                      onClick={() => window.open(project.link, '_blank')}
+                    >
+                      View Project
+                    </Button>
+                  </div>
                 </div>
               </Card>
             </Motion.div>
