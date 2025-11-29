@@ -10,6 +10,14 @@ import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, scrollViewport } f
 
 const Projects = () => {
   const [isGridView, setIsGridView] = useState(window.innerWidth < 768);
+  const [expandedCards, setExpandedCards] = useState({});
+
+  const toggleCard = (projectId) => {
+    setExpandedCards(prev => ({
+      ...prev,
+      [projectId]: !prev[projectId]
+    }));
+  };
 
   return (
     <section id="projects" className="py-12 sm:py-16 md:py-24 lg:py-40 xl:py-56 bg-[#222] text-[#FFFFFF]">
@@ -29,7 +37,7 @@ const Projects = () => {
 
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 xl:gap-0 md:justify-between md:items-start">
             <h6 className="text-base sm:text-lg md:text-xl xl:text-2xl max-w-full md:max-w-md lg:max-w-lg xl:max-w-xl">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
+              Featured projects across web apps, mobile apps, and prototypes, highlighting practical solutions and functional design.
             </h6>
 
             {/* View Toggle - Hidden on mobile */}
@@ -77,7 +85,7 @@ const Projects = () => {
                 variants={index % 2 === 0 ? fadeInLeft : fadeInRight}
               >
                 <Card 
-                  className={`flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
+                  className={`flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24 ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} lg:items-start`}
                   hover
                 >
                   <img 
@@ -86,20 +94,53 @@ const Projects = () => {
                     className="shadow-2xl shadow-[rgba(255,255,255,0.05)] w-full lg:w-3/5 xl:max-w-5xl aspect-[16/9] object-cover rounded-2xl md:rounded-3xl bg-white flex-shrink-0" 
                   />
                   
-                  <div className="flex flex-col flex-1 justify-between place-self-start lg:place-self-center">
-                    <div>
-                      <h3 className={`font-['Boldonse'] text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl uppercase leading-20 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
+                  <div className={`flex flex-col flex-1 place-self-center`}>
+                    <div className="flex flex-col">
+                      <h3 className={`font-['Boldonse'] text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl uppercase leading-tight mb-2 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
                         {project.title}
                       </h3>
-                      <p className={`text-gray-300 text-sm sm:text-base md:text-lg ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
+                      <p className={`text-gray-300 text-sm sm:text-base md:text-lg mb-3 ${!expandedCards[project.id] ? 'line-clamp-2' : ''} ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
                         {project.description}
                       </p>
+
+                      {/* See More/Less Button */}
+                      {project.description.length > 100 && (
+                        <button
+                          onClick={() => toggleCard(project.id)}
+                          className={`text-white hover:text-gray-300 text-sm font-medium ${expandedCards[project.id] ? 'mb-4' : 'mb-6'} transition-colors flex items-center gap-1 ${index % 2 === 0 ? 'lg:ml-auto' : ''}`}
+                        >
+                          {expandedCards[project.id] ? 'See Less' : 'See More'}
+                          <svg 
+                            className={`w-4 h-4 transition-transform duration-300 ${expandedCards[project.id] ? 'rotate-180' : ''}`}
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                      )}
+
+                      {/* Tags - Show when expanded */}
+                      {expandedCards[project.id] && (
+                        <Motion.div 
+                          className={`flex flex-wrap gap-2 mb-4 ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {project.tags.map((tag) => (
+                            <Badge key={tag}>{tag}</Badge>
+                          ))}
+                        </Motion.div>
+                      )}
                     </div>
 
                     <Button
                       variant="secondary"
                       size="md"
-                      className={`mt-12 px-8 sm:px-10 md:px-12 py-2 sm:py-2.5 md:py-3 w-fit border-2 border-[#FFFFFF] text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#333333] text-sm sm:text-base ${index % 2 === 0 ? 'lg:place-self-end' : 'lg:place-self-start'}`}
+                      className={`px-8 sm:px-10 md:px-12 py-2 sm:py-2.5 md:py-3 w-fit border-2 border-[#FFFFFF] text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#333333] text-sm sm:text-base ${index % 2 === 0 ? 'lg:place-self-end' : 'lg:place-self-start'}`}
                       onClick={() => window.open(project.link, '_blank')}
                     >
                       View Project
@@ -137,23 +178,51 @@ const Projects = () => {
                   />
                 </div>
                 
-                <div className="flex flex-col flex-1">
+                <div className="flex flex-col flex-1 w-full">
                   <h3 className="font-['Boldonse'] text-xl sm:text-2xl md:text-2xl xl:text-3xl mb-2 sm:mb-3 uppercase">
                     {project.title}
                   </h3>
-                  <p className="text-gray-300 text-sm sm:text-base mb-3 sm:mb-4 line-clamp-3">
+                  <p className={`text-gray-300 text-sm sm:text-base mb-3 sm:mb-4 ${!expandedCards[project.id] ? 'line-clamp-3' : ''}`}>
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-4 sm:mb-5 md:mb-6">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag}>{tag}</Badge>
-                    ))}
-                  </div>
+
+                  {/* See More/Less Button */}
+                  {project.description.length > 100 && (
+                    <button
+                      onClick={() => toggleCard(project.id)}
+                      className="text-white hover:text-gray-300 text-sm font-medium mb-3 sm:mb-4 transition-colors text-left flex items-center gap-1"
+                    >
+                      {expandedCards[project.id] ? 'See Less' : 'See More'}
+                      <svg 
+                        className={`w-4 h-4 transition-transform duration-300 ${expandedCards[project.id] ? 'rotate-180' : ''}`}
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                  )}
+
+                  {/* Tags - Show when expanded */}
+                  {expandedCards[project.id] && (
+                    <Motion.div 
+                      className="flex flex-wrap gap-2 mb-4 sm:mb-5 md:mb-6"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {project.tags.map((tag) => (
+                        <Badge key={tag}>{tag}</Badge>
+                      ))}
+                    </Motion.div>
+                  )}
 
                   <Button
                     variant="secondary"
                     size="md"
-                    className="px-6 sm:px-7 md:px-8 py-1.5 sm:py-2 w-fit border-2 border-[#FFFFFF] text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#333333] text-sm sm:text-base mt-auto"
+                    className="w-full px-6 sm:px-7 md:px-8 py-1.5 sm:py-2 w-fit border-2 border-[#FFFFFF] text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#333333] text-sm sm:text-base mt-auto"
                     onClick={() => window.open(project.link, '_blank')}
                   >
                     View Project
