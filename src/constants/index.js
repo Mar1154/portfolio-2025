@@ -21,7 +21,7 @@ export const NAV_LINKS = [
 
 // Resume
 export const RESUME_DOWNLOAD = "/portfolio-2025/Marion_Bailey_Resume.pdf";
-export const RESUME_IMAGE = "public/images/Bailey_Marion_Resume.jpg";
+export const RESUME_IMAGE = "/portfolio-2025/images/Bailey_Marion_Resume.jpg";
 
 
 // Images
