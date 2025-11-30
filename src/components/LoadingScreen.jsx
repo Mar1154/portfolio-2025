@@ -173,12 +173,12 @@ const LoadingScreen = ({ onLoadComplete }) => {
                     </Motion.p>
 
                     <Motion.h1
-                    className="font-['Boldonse'] text-8xl md:text-9xl lg:text-[12rem] transition-colors duration-300"
-                    style={{
-                        color: progress > 50 ? '#ffffff' : '#222222'
-                    }}
+                        className="font-['Boldonse'] text-7xl md:text-9xl lg:text-[12rem] transition-colors duration-300"
+                        style={{
+                            color: progress > 50 ? '#ffffff' : '#222222'
+                        }}
                     >
-                    {Math.floor(progress)}%
+                        {Math.floor(progress)}%
                     </Motion.h1>
                     
                 </Motion.div>
