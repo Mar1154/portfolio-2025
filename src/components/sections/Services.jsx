@@ -27,7 +27,7 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="relative py-48 bg-[#222222] text-white overflow-hidden">
+    <section id="services" className="relative py-20 md:py-24 lg:py-40 xl:py-56 bg-[#222222] text-white overflow-hidden">
       <Container>
 
         {/* Decorative Grid Pattern */}
