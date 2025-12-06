@@ -62,11 +62,11 @@ const Navbar = () => {
                 transition={{ duration: 0.6, ease: 'easeOut' }}
             >
                 <Container>
-                    <div className="flex justify-between items-center h-20 py-6">
+                    <div className="flex justify-between items-center py-6 2xl:py-8">
                         <a 
                             href="#home" 
                             onClick={(e) => handleNavClick(e, '#home')}
-                            className={`text-2xl font-semibold transition-colors ${
+                            className={`text-2xl 2xl:text-3xl font-semibold transition-colors ${
                                 isDark ? 'text-white' : 'text-[#333333]'
                             }`}
                         >
@@ -75,7 +75,7 @@ const Navbar = () => {
 
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className={`cursor-pointer rounded-full px-1 pl-4 py-1 flex items-center uppercase font-medium transition-all md:pl-4.5 ${
+                            className={`2xl:text-xl cursor-pointer rounded-full px-1 pl-4 py-1 flex items-center uppercase font-medium transition-all md:pl-4.5 ${
                                 isDark ? 'text-white' : 'text-[#333333]'
                             } ${
                                 isOpen 
@@ -86,10 +86,10 @@ const Navbar = () => {
                             }`}
                         >
                             Menu
-                            <span className={`p-1.5 ml-2.5 rounded-full transition-colors ${
+                            <span className={`p-1.5 ml-2.5 2xl:p-2 2xl:ml-3 rounded-full transition-colors ${
                                 isDark ? 'bg-white/10' : 'bg-black/10'
                             }`}>
-                                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <svg className="w-4 h-4 2xl:w-5 2xl:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <line x1="3" y1="6" x2="21" y2="6" />
                                     <line x1="9" y1="12" x2="21" y2="12" />
                                     <line x1="15" y1="18" x2="21" y2="18" />
@@ -103,7 +103,7 @@ const Navbar = () => {
             <AnimatePresence>
                 {isOpen && (
                     <Motion.div 
-                        className="fixed right-6 top-20 z-40 w-[calc(100vw-3rem)] md:w-96 bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden md:right-24"
+                        className="fixed right-6 top-20 2xl:top-30 z-40 w-[calc(100vw-3rem)] md:w-96 bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden md:right-24"
                         initial={{ opacity: 0, scale: 0.95, y: -20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: -20 }}
@@ -121,7 +121,7 @@ const Navbar = () => {
                                         <a
                                             href={link.href}
                                             onClick={(e) => handleNavClick(e, link.href)}
-                                            className="text-right block text-xl font-medium text-[#1a1a1a] hover:bg-gray-200 rounded-xl px-6 py-3 transition-colors"
+                                            className="text-right block text-xl 2xl:text-2xl font-medium text-[#1a1a1a] hover:bg-gray-200 rounded-xl px-6 py-3 transition-colors"
                                         >
                                             {link.name}
                                         </a>

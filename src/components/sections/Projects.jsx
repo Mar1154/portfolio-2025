@@ -20,7 +20,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 md:py-24 lg:py-40 xl:py-56 bg-[#222] text-[#FFFFFF]">
+    <section id="projects" className="py-28 lg:py-40 xl:py-56 bg-[#222] text-[#FFFFFF]">
       <Container>
 
         {/* Text Section */}

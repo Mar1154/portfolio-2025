@@ -8,6 +8,7 @@ import { heroTitle, heroSubtitle, heroButtons, heroSocials, heroImage } from '..
 const Hero = () => {
     const [isResumeOpen, setIsResumeOpen] = useState(false);
     const [zoom, setZoom] = useState(1);
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     const handleProjectsClick = (e) => {
         e.preventDefault();
@@ -21,6 +22,7 @@ const Hero = () => {
         if (isResumeOpen) {
             document.body.style.overflow = 'hidden';
             setZoom(1);
+            setImageLoaded(false);
         } else {
             document.body.style.overflow = 'unset';
         }
@@ -38,7 +40,7 @@ const Hero = () => {
 
                 {/* Text */}
                 <Motion.h1 
-                    className="font-['Boldonse'] text-center md:text-left md:-ml-1 mb-4 md:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#333333]"
+                    className="font-['Boldonse'] text-center md:text-left md:-ml-1 mb-4 md:mb-6 2xl:mb-10 text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl font-bold text-[#333333]"
                     initial="hidden"
                     animate="visible"
                     variants={heroTitle}
@@ -46,7 +48,7 @@ const Hero = () => {
                     Hello, I'm Mar.
                 </Motion.h1>
                 <Motion.p 
-                    className="text-center md:text-left mb-4 md:mb-8 font-medium text-sm sm:text-lg md:text-xl lg:text-2xl text-[#333333]"
+                    className="text-center md:text-left mb-4 md:mb-8 2xl:mb-10 font-medium text-sm sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl text-[#333333]"
                     initial="hidden"
                     animate="visible"
                     variants={heroSubtitle}
@@ -177,16 +179,23 @@ const Hero = () => {
 
                             {/* Resume Preview */}
                             <div className="flex-1 overflow-auto p-6 md:p-8">
-                                <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-inner flex justify-center items-center">
+                                <div className="bg-gray-50 rounded-2xl overflow-hidden shadow-inner flex justify-center items-center min-h-[500px]">
+                                    {!imageLoaded && (
+                                        <div className="flex items-center justify-center">
+                                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#333333]"></div>
+                                        </div>
+                                    )}
                                     <img
                                         src={RESUME_IMAGE}
                                         style={{
                                             transform: `scale(${zoom})`,
                                             transformOrigin: 'center center',
-                                            transition: 'transform 0.2s ease'
+                                            transition: 'transform 0.2s ease',
+                                            display: imageLoaded ? 'block' : 'none'
                                         }}
                                         className="max-w-full h-auto"
                                         alt="Resume Preview"
+                                        onLoad={() => setImageLoaded(true)}
                                     />
                                 </div>
                             </div>
