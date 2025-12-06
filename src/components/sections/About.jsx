@@ -22,7 +22,7 @@ const About = () => {
                 </SectionTitle>
 
                 <Motion.p
-                    className="text-center text-gray-600 text-base md:text-lg 2xl:text-xl max-w-5xl leading-relaxed"
+                    className="text-center text-gray-600 text-base md:text-xl max-w-5xl leading-relaxed"
                     initial="hidden"
                     whileInView="visible"
                     viewport={scrollViewport}

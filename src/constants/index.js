@@ -1,7 +1,7 @@
 // Site Configuration
 export const SITE_CONFIG = {
-    name: 'mar',
-    title: 'mar',
+    name: 'Marion Bailey',
+    title: 'Marion Bailey - Portfolio',
     description: 'Lorem Ipsum',
     url: 'https://yourportfolio.com',
     author: 'Marion Bailey',
