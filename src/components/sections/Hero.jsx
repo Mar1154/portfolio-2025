@@ -10,6 +10,7 @@ const Hero = () => {
     const [zoom, setZoom] = useState(1);
     const [imageLoaded, setImageLoaded] = useState(false);
 
+    // Scroll to Projects Section
     const handleProjectsClick = (e) => {
         e.preventDefault();
         const target = document.querySelector('#projects');
@@ -18,11 +19,17 @@ const Hero = () => {
         }
     };
 
+    // Open Resume Modal
+    const handleOpenResume = () => {
+        setIsResumeOpen(true);
+        setZoom(1);
+        setImageLoaded(false);
+    };
+
+    // Disable Interaction with Modal Background
     useEffect(() => {
         if (isResumeOpen) {
             document.body.style.overflow = 'hidden';
-            setZoom(1);
-            setImageLoaded(false);
         } else {
             document.body.style.overflow = 'unset';
         }
@@ -36,6 +43,7 @@ const Hero = () => {
         <section id="home" className="relative min-h-screen flex items-end pb-12 md:items-center md:pb-0 hero-gradient">
         <Container>
 
+            {/* Left Section */}
             <div className="flex flex-col z-20">
 
                 {/* Text */}
@@ -74,7 +82,7 @@ const Hero = () => {
                     <Button 
                         variant="primary" 
                         size="lg"
-                        onClick={() => setIsResumeOpen(true)}
+                        onClick={handleOpenResume}
                     >
                         View Resume
                     </Button>
@@ -118,7 +126,6 @@ const Hero = () => {
             </div>
 
             {/* Element */}
-            {/* Will make 3d later */}
             <Motion.div 
                 className="absolute top-0 right-0 md:right-[96px] h-full w-full px-4 md:w-2/5 flex items-start md:items-center justify-center md:justify-end z-0 pointer-events-none"
                 initial="hidden"
