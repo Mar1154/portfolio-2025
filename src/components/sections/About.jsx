@@ -5,7 +5,7 @@ import SectionTitle from '../ui/SectionTitle';
 import Container from '../ui/Container';
 import { fadeInUp, scrollViewport } from '../../utils/animations';
 
-import Hero3DModel from '../Hero3DModel';
+import About3DModel from '../About3DModel';
 
 const About = () => {
 
@@ -16,9 +16,9 @@ const About = () => {
         <section id="about" className="py-48 bg-[#FEFEFE] text-[#333333]">
         
         {/* Layer 1 - 3D Model */}     
-        {/* <Canvas className="absolute top-0 left-0 w-full h-full pointer-events-auto">
-            <Hero3DModel modelRef={modelRef} cameraRef={cameraRef} />
-        </Canvas> */}
+        <Canvas className="absolute top-0 left-0 w-full h-full pointer-events-auto">
+            <About3DModel modelRef={modelRef} cameraRef={cameraRef} />
+        </Canvas>
         
         {/* Layer 2 */}
         <Container>
@@ -49,6 +49,7 @@ const About = () => {
                 </Motion.p>
 
             </Motion.div>
+            
         </Container>
         </section>
     );

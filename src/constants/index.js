@@ -137,6 +137,7 @@ export const HERO_3D_CONFIG = {
         },
     },
 
+    // Intro Video Zoom to Monitor
     videoView: {
         model: {
             scale: [0.16, 0.16, 0.16],
@@ -150,7 +151,7 @@ export const HERO_3D_CONFIG = {
     
     // Transition Settings
     transition: {
-        duration: 1.2, // Duration in seconds
+        duration: 1.2,
         easing: 'easeInOut', // 'linear', 'easeIn', 'easeOut', 'easeInOut'
     },
     
@@ -194,7 +195,7 @@ export const HERO_3D_CONFIG = {
     
     // Environment Settings
     environment: {
-        preset: 'studio', // 'studio', 'sunset', 'dawn', 'night', 'warehouse', 'forest', 'apartment', 'city', 'park', 'lobby'
+        preset: 'city', // 'studio', 'sunset', 'dawn', 'night', 'warehouse', 'forest', 'apartment', 'city', 'park', 'lobby'
         background: false, 
     },
     
@@ -216,7 +217,7 @@ export const HERO_3D_CONFIG = {
     // Animation Settings
     animation: {
         enabled: true,
-        type: 'rotate', // 'sway', 'rotate', 'bounce', 'none'
+        type: 'none', // 'sway', 'rotate', 'bounce', 'none'
         speed: 0.2,
         intensity: 0.1,
     },
@@ -227,16 +228,16 @@ export const HERO_3D_CONFIG = {
         size: 10, 
         divisions: 10, 
         color1: '#888888', 
-        color2: '#444444', 
+        color2: '#acacac', 
         position: [0, 0, 0], 
     },
     
     // Dev Mode 
     devMode: {
-        enabled: true, 
+        enabled: false, 
         showTransformControls: true, 
         transformMode: 'translate', 
-        showStats: false, 
+        showStats: true, 
         showCameraHelper: false, 
     },
 };

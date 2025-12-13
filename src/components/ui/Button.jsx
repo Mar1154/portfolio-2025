@@ -11,7 +11,7 @@ const Button = ({
     const baseStyles = 'cursor-pointer font-medium inline-block text-center font-medium rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
     
     const variants = {
-        primary: 'border-2 md:border-3 border-[#333333] bg-[#333333] text-white hover:bg-gray-800',
+        primary: 'border-2 md:border-3 border-[#333333] bg-[#333333] text-white hover:brightness-150',
         secondary: 'border-2 md:border-3 border-[#333333] text-[#333333]',
         ghost: 'text-[#333333] hover:text-[#333333] hover:bg-gray-100',
     };
@@ -34,7 +34,7 @@ const Button = ({
 
     return (
         <button type={type} onClick={onClick} className={classes} {...props}>
-        {children}
+            {children}
         </button>
     );
 };

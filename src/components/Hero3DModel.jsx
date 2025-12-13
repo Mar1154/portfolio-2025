@@ -137,6 +137,11 @@ const Hero3DModel = ({ modelRef: providedModelRef, cameraRef: providedCameraRef,
     const animationProgress = useRef(0);
     const isAnimating = useRef(false);
     const targetState = useRef(isResumeOpen);
+    
+    // Preloader animation state
+    const [isPreloading, setIsPreloading] = useState(true);
+    const preloadProgress = useRef(0);
+    const preloadDuration = 2; // 2 seconds for the spin animation
 
     // Set initial rotation
     useEffect(() => {
@@ -198,6 +203,53 @@ const Hero3DModel = ({ modelRef: providedModelRef, cameraRef: providedCameraRef,
     // Animation frame
     useFrame((state, delta) => {
         if (!modelRef.current || !cameraRef.current) return;
+
+        // Handle preloader animation (camera spinning around model)
+        if (isPreloading) {
+            preloadProgress.current += delta;
+            const spinProgress = Math.min(preloadProgress.current / preloadDuration, 1);
+            
+            // Target final position from config
+            const targetX = camera.position[0];
+            const targetY = camera.position[1];
+            const targetZ = camera.position[2];
+            
+            // Calculate angle - only 180 degrees rotation (half circle)
+            const angle = easeInOutCubic(spinProgress) * Math.PI;
+            
+            // Start from target position and rotate around
+            // This ensures we end where we should be
+            const radius = 5; // Smaller radius for subtler effect
+            const offsetX = Math.cos(angle) * radius;
+            const offsetZ = Math.sin(angle) * radius;
+            
+            // Position starts offset and returns to target
+            // Use inverse progress for the offset so it diminishes over time
+            const offsetScale = 1 - easeInOutCubic(spinProgress);
+            
+            cameraRef.current.position.x = targetX + offsetX * offsetScale;
+            cameraRef.current.position.y = targetY;
+            cameraRef.current.position.z = targetZ + offsetZ * offsetScale;
+            
+            // Always look at the model center during preload
+            const modelCenter = new THREE.Vector3(
+                model.position[0],
+                model.position[1],
+                model.position[2]
+            );
+            cameraRef.current.lookAt(modelCenter);
+            
+            // End preloader animation
+            if (spinProgress >= 1) {
+                setIsPreloading(false);
+                // Reset camera to look at target
+                if (camera.lookAt) {
+                    cameraRef.current.lookAt(new THREE.Vector3(...camera.lookAt));
+                }
+            }
+            
+            return;
+        }
 
         // Handle transition animation
         if (isAnimating.current) {

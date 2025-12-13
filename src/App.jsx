@@ -7,7 +7,7 @@ import About from './components/sections/About'
 import Projects from './components/sections/Projects'
 import Services from './components/sections/Services'
 import Contact from './components/sections/Contact'
-import Footer from './components/Footer'
+import Footer from './components/sections/Footer'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
