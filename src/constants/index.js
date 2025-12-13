@@ -7,7 +7,96 @@ export const SITE_CONFIG = {
     author: 'Marion Bailey',
     email: 'noiramyeliab@gmail.com',
     // heroImage: '/images/my-3d-setup-with-me-gemini-2.png',
-    heroImage: '/portfolio-2025/images/3d-setup-2.png'
+    heroImage: '/portfolio-2025/images/3d-setup-2.png',
+    hero3dModel: '/portfolio-2025/models/3d-pc-setup.glb',
+};
+
+// 3D Model Configuration
+export const HERO_3D_CONFIG = {
+    // Model Settings
+    model: {
+        path: '/portfolio-2025/models/3d-pc-setup.glb',
+        scale: [0.1, 0.1, 0.1],
+        position: [1, 0, 1],
+        rotation: [0, 3.14, 0],
+    },
+    
+    // Camera Settings
+    camera: {
+        position: [0, 1.7, 4], 
+        fov: 45, 
+        near: 0.1, 
+        far: 1000, 
+        lookAt: [0, 4, 0],
+    },
+    
+    // Lighting Settings
+    lighting: {
+        ambient: {
+            intensity: 0.5,
+            color: '#ffffff',
+        },
+        directional: [
+            {
+                position: [10, 10, 5],
+                intensity: 1,
+                color: '#ffffff',
+                castShadow: true,
+            },
+            {
+                position: [-10, -10, -5],
+                intensity: 0.3,
+                color: '#ffffff',
+                castShadow: false,
+            },
+        ],
+        point: [
+            {
+                position: [0, 5, 0],
+                intensity: 0.5,
+                color: '#ffffff',
+            },
+        ],
+    },
+    
+    // Environment Settings
+    environment: {
+        preset: 'studio', // 'studio', 'sunset', 'dawn', 'night', 'warehouse', 'forest', 'apartment', 'city', 'park', 'lobby'
+        background: false, 
+    },
+    
+    // Controls Settings
+    controls: {
+        enableZoom: false,
+        enablePan: false,
+        enableRotate: true,
+        autoRotate: false,
+        autoRotateSpeed: 0.5,
+        minPolarAngle: Math.PI / 3, // Minimum vertical angle
+        maxPolarAngle: Math.PI / 2, // Maximum vertical angle
+        minAzimuthAngle: -Infinity, // Minimum horizontal angle
+        maxAzimuthAngle: Infinity, // Maximum horizontal angle
+        dampingFactor: 0.05, // Smoothness of controls
+        enableDamping: true,
+    },
+    
+    // Animation Settings
+    animation: {
+        enabled: true,
+        type: 'none', // 'sway', 'rotate', 'bounce', 'none'
+        speed: 0.2,
+        intensity: 0.1,
+    },
+    
+    // Grid Helper (for development/positioning)
+    grid: {
+        enabled: true, // Set to false to hide grid
+        size: 10, // Size of the grid
+        divisions: 10, // Number of divisions
+        color1: '#888888', // Primary grid line color
+        color2: '#444444', // Secondary grid line color
+        position: [0, 0, 0], // Grid position [x, y, z]
+    },
 };
 
 // Navigation Links
@@ -26,6 +115,9 @@ export const RESUME_IMAGE = "/portfolio-2025/images/Bailey_Marion_Resume.jpg";
 
 // Images
 export const HERO_IMAGE = "public/images/my-3d-setup-with-me-gemini-2.png";
+
+// Models
+export const HERO_3D_MODEL = "public/models/3d-pc-setup.glb";
 
 // Social Links
 export const SOCIAL_LINKS = [
