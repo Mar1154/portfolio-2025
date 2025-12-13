@@ -71,10 +71,7 @@ const Hero = () => {
         
         <section id="home" className="relative h-screen flex items-end pb-12 md:items-center md:pb-0 w-full hero-gradient">
         
-        {/* Layer 1 - 3D Model */}     
-        <Canvas className="absolute top-0 left-0 w-full h-full pointer-events-auto">
-            <Hero3DModel modelRef={modelRef} cameraRef={cameraRef} isResumeOpen={isResumeAnimating} />
-        </Canvas>
+
 
         {/* Layer 2 */}
         <Container className="absolute top-0 left-0 h-full">
@@ -185,6 +182,11 @@ const Hero = () => {
             </Motion.div> */}
 
         </Container>
+
+        {/* Layer 1 - 3D Model */}     
+        <Canvas className="absolute top-0 left-0 w-full h-full pointer-events-auto">
+            <Hero3DModel modelRef={modelRef} cameraRef={cameraRef} isResumeOpen={isResumeAnimating} />
+        </Canvas>
         
         </section>
 

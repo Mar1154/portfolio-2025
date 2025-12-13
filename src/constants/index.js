@@ -13,12 +13,116 @@ export const SITE_CONFIG = {
 
 // 3D Model Configuration
 export const HERO_3D_CONFIG = {
-    // Hero Model
+    // Responsive configurations for different screen sizes
+    responsive: {
+        // Mobile (< 768px)
+        mobile: {
+            model: {
+                scale: [0.05, 0.05, 0.05],
+                position: [-0.35, 0.22, 1],
+                rotation: [0.00, 3.14, 0.00],
+            },
+            resumeView: {
+                model: {
+                    scale: [0.10, 0.10, 0.10],
+                    position: [-0.07, 0.43, 1.85],
+                    rotation: [0.00, 3.14, 0.00],
+                },
+                camera: {
+                    position: [-0.79, 1.97, 3.32],
+                },
+            },
+            camera: {
+                position: [-1, 1.5, 3.5],
+                fov: 50,
+                near: 0.1,
+                far: 1000,
+                lookAt: [0, 3, 0],
+            },
+        },
+        // Tablet (768px - 1024px)
+        tablet: {
+            model: {
+                scale: [0.06, 0.06, 0.06],
+                position: [0.3, -0.2, 1.1],
+                rotation: [0.00, 3.14, 0.00],
+            },
+            resumeView: {
+                model: {
+                    scale: [0.12, 0.12, 0.12],
+                    position: [0.7, -0.4, 1.6],
+                    rotation: [0.00, 3.14, 0.00],
+                },
+                camera: {
+                    position: [-0.06, 2, 3.7],
+                },
+            },
+            camera: {
+                position: [-1.2, 1.8, 3.6],
+                fov: 47,
+                near: 0.1,
+                far: 1000,
+                lookAt: [0, 3.5, 0],
+            },
+        },
+        // Desktop (1024px - 1440px)
+        desktop: {
+            model: {
+                scale: [0.07, 0.07, 0.07],
+                position: [0.45, -0.1, 1.15],
+                rotation: [0.00, 3.14, 0.00],
+            },
+            resumeView: {
+                model: {
+                    scale: [0.14, 0.14, 0.14],
+                    position: [0.85, -0.35, 1.65],
+                    rotation: [0.00, 3.14, 0.00],
+                },
+                camera: {
+                    position: [-0.065, 2.1, 3.75],
+                },
+            },
+            camera: {
+                position: [-1.3, 1.9, 3.65],
+                fov: 46,
+                near: 0.1,
+                far: 1000,
+                lookAt: [0, 3.7, 0],
+            },
+        },
+        // Large Desktop (>= 1440px) - Your current settings
+        largeDesktop: {
+            model: {
+                scale: [0.08, 0.08, 0.08],
+                position: [0.55, -0.02, 1.21],
+                rotation: [0.00, 3.14, 0.00],
+            },
+            resumeView: {
+                model: {
+                    scale: [0.16, 0.16, 0.16],
+                    position: [1.01, -0.32, 1.73],
+                    rotation: [0.00, 3.14, 0.00],
+                },
+                camera: {
+                    position: [-0.07, 2.21, 3.83],
+                },
+            },
+            camera: {
+                position: [-1.36, 2, 3.70],
+                fov: 45,
+                near: 0.1,
+                far: 1000,
+                lookAt: [0, 4, 0],
+            },
+        },
+    },
+
+    // Default/Fallback - Uses large desktop settings
     model: {
         path: '/portfolio-2025/models/3d-pc-setup.glb',
-        scale: [0.08, 0.08, 0.08], // Intial position
-        position: [0.55, -0.02, 1.21], // Intial position
-        rotation: [0.00, 3.14, 0.00], // Initial rotation
+        scale: [0.08, 0.08, 0.08],
+        position: [0.55, -0.02, 1.21],
+        rotation: [0.00, 3.14, 0.00],
     },
     
     // Resume View Positions (when resume modal is open)
@@ -132,7 +236,7 @@ export const HERO_3D_CONFIG = {
         enabled: true, 
         showTransformControls: true, 
         transformMode: 'translate', 
-        showStats: true, 
+        showStats: false, 
         showCameraHelper: false, 
     },
 };

@@ -4,6 +4,32 @@ import { useFrame } from '@react-three/fiber';
 import { HERO_3D_CONFIG } from '../constants';
 import * as THREE from 'three';
 
+// Hook to detect screen size and return appropriate config
+const useResponsiveConfig = () => {
+    const [screenSize, setScreenSize] = useState('largeDesktop');
+
+    useEffect(() => {
+        const updateScreenSize = () => {
+            const width = window.innerWidth;
+            if (width < 768) {
+                setScreenSize('mobile');
+            } else if (width < 1024) {
+                setScreenSize('tablet');
+            } else if (width < 1440) {
+                setScreenSize('desktop');
+            } else {
+                setScreenSize('largeDesktop');
+            }
+        };
+
+        updateScreenSize();
+        window.addEventListener('resize', updateScreenSize);
+        return () => window.removeEventListener('resize', updateScreenSize);
+    }, []);
+
+    return screenSize;
+};
+
 // Dev Panel 
 export const DevPanel = ({ modelRef, cameraRef }) => {
     const [values, setValues] = useState({
@@ -95,7 +121,16 @@ const Hero3DModel = ({ modelRef: providedModelRef, cameraRef: providedCameraRef,
     const cameraRef = providedCameraRef || defaultCameraRef;
     
     const { scene } = useGLTF(HERO_3D_CONFIG.model.path);
-    const { model, camera, lighting, environment, controls, animation, grid, devMode, resumeView, transition } = HERO_3D_CONFIG;
+    const screenSize = useResponsiveConfig();
+    
+    // Get responsive configuration based on screen size
+    const responsiveConfig = HERO_3D_CONFIG.responsive[screenSize];
+    const model = { ...HERO_3D_CONFIG.model, ...responsiveConfig.model };
+    const camera = responsiveConfig.camera;
+    const resumeView = responsiveConfig.resumeView;
+    
+    // Use default configs for non-responsive settings
+    const { lighting, environment, controls, animation, grid, devMode, transition } = HERO_3D_CONFIG;
     const [transformMode, setTransformMode] = useState(devMode.transformMode);
     
     // Animation state
