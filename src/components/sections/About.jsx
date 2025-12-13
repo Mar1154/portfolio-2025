@@ -1,12 +1,26 @@
+import { useRef } from 'react';
+import { Canvas } from '@react-three/fiber';
 import { motion as Motion } from 'motion/react';
 import SectionTitle from '../ui/SectionTitle';
 import Container from '../ui/Container';
 import { fadeInUp, scrollViewport } from '../../utils/animations';
 
+import Hero3DModel from '../Hero3DModel';
+
 const About = () => {
+
+    const modelRef = useRef();
+    const cameraRef = useRef();
 
     return (
         <section id="about" className="py-48 bg-[#FEFEFE] text-[#333333]">
+        
+        {/* Layer 1 - 3D Model */}     
+        {/* <Canvas className="absolute top-0 left-0 w-full h-full pointer-events-auto">
+            <Hero3DModel modelRef={modelRef} cameraRef={cameraRef} />
+        </Canvas> */}
+        
+        {/* Layer 2 */}
         <Container>
 
             <Motion.div 

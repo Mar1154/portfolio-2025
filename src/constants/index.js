@@ -216,7 +216,7 @@ export const HERO_3D_CONFIG = {
     // Animation Settings
     animation: {
         enabled: true,
-        type: 'none', // 'sway', 'rotate', 'bounce', 'none'
+        type: 'rotate', // 'sway', 'rotate', 'bounce', 'none'
         speed: 0.2,
         intensity: 0.1,
     },
