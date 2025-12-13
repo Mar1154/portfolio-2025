@@ -12,33 +12,6 @@ A modern, minimal, and fully responsive portfolio website built with React, Vite
 - **Modular Components**: Reusable UI components for easy maintenance
 - **Type-Safe**: Built with best practices and proper prop validation
 
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone <your-repo-url>
-cd portfolio-2025
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open your browser and visit `http://localhost:5173`
-
 ## 📁 Project Structure
 
 ```
@@ -103,40 +76,6 @@ The project uses Tailwind CSS for styling. Key configuration:
 - `tailwind.config.js` - Tailwind configuration
 - `src/index.css` - Global styles and Tailwind directives
 
-## 🛠️ Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-
-## 📦 Build for Production
-
-```bash
-npm run build
-```
-
-The optimized production files will be in the `dist/` directory.
-
-## 🌐 Deployment
-
-### Vercel
-```bash
-npm run build
-vercel --prod
-```
-
-### Netlify
-```bash
-npm run build
-netlify deploy --prod --dir=dist
-```
-
-### GitHub Pages
-1. Update `vite.config.js` with base path
-2. Run `npm run build`
-3. Deploy `dist/` folder to gh-pages branch
-
 ## 🔧 Performance Optimizations
 
 - ✅ Code splitting and lazy loading
@@ -146,38 +85,23 @@ netlify deploy --prod --dir=dist
 - ✅ Efficient chunk splitting
 - ✅ Fast refresh during development
 
-## ♿ Accessibility
-
-- ✅ Semantic HTML elements
-- ✅ ARIA labels and attributes
-- ✅ Keyboard navigation support
-- ✅ Focus indicators
-- ✅ Screen reader friendly
-
 ## 📱 Responsive Design
 
 - Mobile: < 640px
 - Tablet: 640px - 1024px
 - Desktop: > 1024px
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
 ## 👤 Author
 
-**Your Name**
-- Website: [yourportfolio.com](https://yourportfolio.com)
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [@yourusername](https://linkedin.com/in/yourusername)
+**Marion Ely Bailey**
+- Website: [mar.com](https://mar.com)
+- GitHub: [@mar1154](https://github.com/mar1154)
+- LinkedIn: [@marion-bailey](https://linkedin.com/in/marion-bailey)
 
 ## 🙏 Acknowledgments
 
-- Built with [React](https://reactjs.org/)
+- Built with [React] and [React Three Fiber](https://reactjs.org/)
 - Styled with [Tailwind CSS](https://tailwindcss.com/)
+- Animations built with [FramerMotion] 
 - Powered by [Vite](https://vitejs.dev/)
 
