@@ -13,24 +13,53 @@ export const SITE_CONFIG = {
 
 // 3D Model Configuration
 export const HERO_3D_CONFIG = {
-    // Model Settings
+    // Hero Model
     model: {
         path: '/portfolio-2025/models/3d-pc-setup.glb',
-        scale: [0.1, 0.1, 0.1],
-        position: [1, 0, 1],
-        rotation: [0, 3.14, 0],
+        scale: [0.08, 0.08, 0.08], // Intial position
+        position: [0.55, -0.02, 1.21], // Intial position
+        rotation: [0.00, 3.14, 0.00], // Initial rotation
     },
     
-    // Camera Settings
+    // Resume View Positions (when resume modal is open)
+    resumeView: {
+        model: {
+            scale: [0.16, 0.16, 0.16],
+            position: [1.01, -0.32, 1.73],
+            rotation: [0.00, 3.14, 0.00],
+        },
+        camera: {
+            position: [-0.07, 2.21, 3.83],
+        },
+    },
+
+    videoView: {
+        model: {
+            scale: [0.16, 0.16, 0.16],
+            position: [0.55, -0.02, 1.21],
+            rotation: [0.00, 3.14, 0.00],
+        },
+        camera: {
+            position: [-1.36, 2, 3.70],
+        },
+    },
+    
+    // Transition Settings
+    transition: {
+        duration: 1.2, // Duration in seconds
+        easing: 'easeInOut', // 'linear', 'easeIn', 'easeOut', 'easeInOut'
+    },
+    
+    // Camera
     camera: {
-        position: [0, 1.7, 4], 
+        position: [-1.36, 2, 3.70], // Initial camera position
         fov: 45, 
         near: 0.1, 
         far: 1000, 
         lookAt: [0, 4, 0],
     },
     
-    // Lighting Settings
+    // Lighting
     lighting: {
         ambient: {
             intensity: 0.5,
@@ -88,14 +117,23 @@ export const HERO_3D_CONFIG = {
         intensity: 0.1,
     },
     
-    // Grid Helper (for development/positioning)
+    // Grid Helper 
     grid: {
-        enabled: true, // Set to false to hide grid
-        size: 10, // Size of the grid
-        divisions: 10, // Number of divisions
-        color1: '#888888', // Primary grid line color
-        color2: '#444444', // Secondary grid line color
-        position: [0, 0, 0], // Grid position [x, y, z]
+        enabled: true, 
+        size: 10, 
+        divisions: 10, 
+        color1: '#888888', 
+        color2: '#444444', 
+        position: [0, 0, 0], 
+    },
+    
+    // Dev Mode 
+    devMode: {
+        enabled: true, 
+        showTransformControls: true, 
+        transformMode: 'translate', 
+        showStats: true, 
+        showCameraHelper: false, 
     },
 };
 

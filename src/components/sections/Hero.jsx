@@ -1,17 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Canvas } from '@react-three/fiber'
 import { motion as Motion, AnimatePresence } from 'motion/react';
-import { RESUME_DOWNLOAD, RESUME_IMAGE } from '../../constants';
+import { SITE_CONFIG, SOCIAL_LINKS, RESUME_DOWNLOAD, RESUME_IMAGE, HERO_3D_CONFIG } from '../../constants';
 import { heroTitle, heroSubtitle, heroButtons } from '../../utils/animations';
 
 import Button from '../ui/Button';
 import Container from '../ui/Container';
-import Hero3DModel from '../Hero3DModel';
+import Hero3DModel, { DevPanel } from '../Hero3DModel';
 
 const Hero = () => {
-    const [isResumeOpen, setIsResumeOpen] = useState(false);
+    const [isResumeAnimating, setIsResumeAnimating] = useState(false); // Controls 3D animation
+    const [showResumeModal, setShowResumeModal] = useState(false); // Controls modal visibility
+    const [showLeftSection, setShowLeftSection] = useState(true);
     const [zoom, setZoom] = useState(1);
     const [imageLoaded, setImageLoaded] = useState(false);
+    
+    // Refs for 3D model dev mode
+    const modelRef = useRef();
+    const cameraRef = useRef();
 
     // Scroll to Projects Section
     const handleProjectsClick = (e) => {
@@ -22,16 +28,31 @@ const Hero = () => {
         }
     };
 
-    // Open Resume Modal
+    // Open Resume Modal with fade out animation
     const handleOpenResume = () => {
-        setIsResumeOpen(true);
-        setZoom(1);
-        setImageLoaded(false);
+        // Immediate actions
+        setShowLeftSection(false); // Fade out left section
+        setIsResumeAnimating(true); // Start 3D camera movement
+        
+        // Wait for fade + delay, then show modal
+        setTimeout(() => {
+            setShowResumeModal(true);
+            setZoom(1);
+            setImageLoaded(false);
+        }, 800); // 500ms fade out + 300ms delay
+    };
+
+    // Close Resume Modal
+    const handleCloseResume = () => {
+        // All immediate actions
+        setShowResumeModal(false); // Close modal
+        setIsResumeAnimating(false); // Move camera back
+        setShowLeftSection(true); // Show text immediately
     };
 
     // Disable Interaction with Modal Background
     useEffect(() => {
-        if (isResumeOpen) {
+        if (showResumeModal) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset';
@@ -39,22 +60,35 @@ const Hero = () => {
         return () => {
             document.body.style.overflow = 'unset';
         };
-    }, [isResumeOpen]);
+    }, [showResumeModal]);
 
     return (
         <>
+        {/* Dev Panel - Outside Canvas */}
+        {HERO_3D_CONFIG.devMode?.enabled && HERO_3D_CONFIG.devMode?.showStats && (
+            <DevPanel modelRef={modelRef} cameraRef={cameraRef} />
+        )}
+        
         <section id="home" className="relative h-screen flex items-end pb-12 md:items-center md:pb-0 w-full hero-gradient">
         
         {/* Layer 1 - 3D Model */}     
         <Canvas className="absolute top-0 left-0 w-full h-full pointer-events-auto">
-            <Hero3DModel />
+            <Hero3DModel modelRef={modelRef} cameraRef={cameraRef} isResumeOpen={isResumeAnimating} />
         </Canvas>
-        
+
         {/* Layer 2 */}
         <Container className="absolute top-0 left-0 h-full">
 
             {/* Left Section */} 
-            <section className="h-full flex flex-col justify-end md:justify-center md:w-3/5 lg:w-2/3 z-10">
+            <AnimatePresence>
+            {showLeftSection && (
+            <Motion.section 
+                className="h-full flex flex-col justify-end md:justify-center md:w-3/5 lg:w-2/3 z-10"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+            >
                 {/* Text */}
                 <Motion.h1 
                     className="font-['Boldonse'] text-center md:text-left md:-ml-1 mb-4 md:mb-6 2xl:mb-10 text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl font-bold text-[#333333]"
@@ -96,7 +130,9 @@ const Hero = () => {
                         View Resume
                     </Button>
                 </Motion.div>
-            </section>
+            </Motion.section>
+            )}
+            </AnimatePresence>
 
             {/* Socials */}
             {/* <Motion.div 
@@ -154,16 +190,16 @@ const Hero = () => {
 
         {/* Resume Modal */}
         <AnimatePresence>
-            {isResumeOpen && (
+            {showResumeModal && (
                 <>
                     {/* Backdrop */}
                     <Motion.div
-                        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+                        className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        onClick={() => setIsResumeOpen(false)}
+                        onClick={handleCloseResume}
                     />
                     
                     {/* Modal */}
@@ -183,7 +219,7 @@ const Hero = () => {
                                 
                                 {/* Close Button */}
                                 <button
-                                    onClick={() => setIsResumeOpen(false)}
+                                    onClick={handleCloseResume}
                                     className="cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-colors"
                                     aria-label="Close resume"
                                 >
@@ -255,7 +291,7 @@ const Hero = () => {
 
                                 <div className="flex gap-2 md:gap-4 w-full md:w-auto">
                                     <button
-                                        onClick={() => setIsResumeOpen(false)}
+                                        onClick={handleCloseResume}
                                         className="cursor-pointer flex-1 md:flex-none px-4 md:px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-[#333333] rounded-full transition-colors font-medium text-sm md:text-base"
                                     >
                                         Close
