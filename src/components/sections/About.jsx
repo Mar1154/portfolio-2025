@@ -5,7 +5,8 @@ import SectionTitle from '../ui/SectionTitle';
 import Container from '../ui/Container';
 import { fadeInUp, scrollViewport } from '../../utils/animations';
 
-import About3DModel from '../About3DModel';
+import { ABOUT_3D_CONFIG } from '../../constants';
+import About3DModel, {DevPanel} from '../About3DModel';
 
 const About = () => {
 
@@ -13,6 +14,12 @@ const About = () => {
     const cameraRef = useRef();
 
     return (
+        <>
+        {/* Dev Panel - Outside Canvas */}
+        {ABOUT_3D_CONFIG.devMode?.enabled && ABOUT_3D_CONFIG.devMode?.showStats && (
+            <DevPanel modelRef={modelRef} cameraRef={cameraRef} />
+        )}
+
         <section id="about" className="py-48 bg-[#FEFEFE] text-[#333333]">
         
         {/* Layer 1 - 3D Model */}     
@@ -52,6 +59,7 @@ const About = () => {
             
         </Container>
         </section>
+        </>
     );
 };
 
