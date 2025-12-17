@@ -18,8 +18,8 @@ export const HERO_3D_CONFIG = {
         // Mobile (< 768px)
         mobile: {
             model: {
-                scale: [0.05, 0.05, 0.05],
-                position: [-0.35, 0.22, 1],
+                scale: [0.055, 0.055, 0.055],
+                position: [-0.26, 0.22, 1],
                 rotation: [0.00, 3.14, 0.00],
             },
             resumeView: {
@@ -94,7 +94,7 @@ export const HERO_3D_CONFIG = {
         largeDesktop: {
             model: {
                 scale: [0.08, 0.08, 0.08],
-                position: [0.55, -0.02, 1.21],
+                position: [0.76, -0.06, 1.21],
                 rotation: [0.00, 3.14, 0.00],
             },
             resumeView: {
@@ -119,9 +119,10 @@ export const HERO_3D_CONFIG = {
 
     // Default/Fallback - Uses large desktop settings
     model: {
-        path: '/portfolio-2025/models/3d-pc-setup.glb',
+        path: '/portfolio-2025/models/3d-pc-setup-2.glb',
         scale: [0.08, 0.08, 0.08],
-        position: [0.55, -0.02, 1.21],
+        // position: [0.55, -0.02, 1.21], // Non-zero gravity
+        position: [0.76, -0.06, 1.21],
         rotation: [0.00, 3.14, 0.00],
     },
     
@@ -223,9 +224,9 @@ export const HERO_3D_CONFIG = {
     // Animation Settings
     animation: {
         enabled: true,
-        type: 'none', // 'sway', 'rotate', 'bounce', 'none'
-        speed: 0.2,
-        intensity: 0.1,
+        type: 'bounce', // 'sway', 'rotate', 'bounce', 'none'
+        speed: 1.5,
+        intensity: 0.05,
     },
     
     // Grid Helper 
