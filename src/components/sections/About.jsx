@@ -38,7 +38,7 @@ const About = () => {
                 variants={fadeInUp}
             >
                 
-                <SectionTitle className="mb-0 text-2xl md:text-5xl lg:text-6xl text-center leading-10 md:leading-24 lg:leading-28">
+                {/* <SectionTitle className="mb-0 text-2xl md:text-5xl lg:text-6xl text-center leading-10 md:leading-24 lg:leading-28">
                     Designing with Intention,<br/>Building with Precision
                 </SectionTitle>
 
@@ -53,11 +53,12 @@ const About = () => {
                     I'm a passionate front-end developer and UI/UX designer dedicated to crafting beautiful, 
                     functional digital experiences. With a keen eye for detail and a love for clean code, 
                     I transform creative visions into reality through thoughtful design and modern web technologies.
-                </Motion.p>
+                </Motion.p> */}
 
             </Motion.div>
             
         </Container>
+
         </section>
         </>
     );

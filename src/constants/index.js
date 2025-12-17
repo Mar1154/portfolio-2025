@@ -258,18 +258,8 @@ export const ABOUT_3D_CONFIG = {
                 position: [-0.35, 0.22, 1],
                 rotation: [0.00, 3.14, 0.00],
             },
-            resumeView: {
-                model: {
-                    scale: [0.10, 0.10, 0.10],
-                    position: [-0.07, 0.43, 1.85],
-                    rotation: [0.00, 3.14, 0.00],
-                },
-                camera: {
-                    position: [-0.79, 1.97, 3.32],
-                },
-            },
             camera: {
-                position: [-1, 1.5, 3.5],
+                position: [0, 2, 2],
                 fov: 50,
                 near: 0.1,
                 far: 1000,
@@ -283,18 +273,8 @@ export const ABOUT_3D_CONFIG = {
                 position: [0.3, -0.2, 1.1],
                 rotation: [0.00, 3.14, 0.00],
             },
-            resumeView: {
-                model: {
-                    scale: [0.12, 0.12, 0.12],
-                    position: [0.7, -0.4, 1.6],
-                    rotation: [0.00, 3.14, 0.00],
-                },
-                camera: {
-                    position: [-0.06, 2, 3.7],
-                },
-            },
             camera: {
-                position: [-1.2, 1.8, 3.6],
+                position: [0, 2, 2],
                 fov: 47,
                 near: 0.1,
                 far: 1000,
@@ -308,18 +288,8 @@ export const ABOUT_3D_CONFIG = {
                 position: [0.45, -0.1, 1.15],
                 rotation: [0.00, 3.14, 0.00],
             },
-            resumeView: {
-                model: {
-                    scale: [0.14, 0.14, 0.14],
-                    position: [0.85, -0.35, 1.65],
-                    rotation: [0.00, 3.14, 0.00],
-                },
-                camera: {
-                    position: [-0.065, 2.1, 3.75],
-                },
-            },
             camera: {
-                position: [-1.3, 1.9, 3.65],
+                position: [0, 2, 2],
                 fov: 46,
                 near: 0.1,
                 far: 1000,
@@ -330,21 +300,11 @@ export const ABOUT_3D_CONFIG = {
         largeDesktop: {
             model: {
                 scale: [1, 1, 1],
-                position: [0, 0, 0],
+                position: [0, 1, 0],
                 rotation: [0.00, 0.00, 0.00],
             },
-            resumeView: {
-                model: {
-                    scale: [0.16, 0.16, 0.16],
-                    position: [1.01, -0.32, 1.73],
-                    rotation: [0.00, 3.14, 0.00],
-                },
-                camera: {
-                    position: [-0.07, 2.21, 3.83],
-                },
-            },
             camera: {
-                position: [-1.36, 2, 3.70],
+                position: [0, 2, 2],
                 fov: 45,
                 near: 0.1,
                 far: 1000,
